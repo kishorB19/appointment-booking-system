@@ -2,6 +2,11 @@
 
 A clean, modern, and reliable appointment booking system built with **React**, **Java (Spring Boot 3)**, and **PostgreSQL**.
 
+## 🌐 Live Production Deployment
+
+- **Vercel Frontend URL**: [https://frontend-ten-murex-2hsttxiju3.vercel.app](https://frontend-ten-murex-2hsttxiju3.vercel.app)
+- **Deployment Status**: ✅ Production Ready
+
 ---
 
 ## 🎯 Key Roles & Features
