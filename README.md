@@ -2,8 +2,9 @@
 
 A clean, modern, and reliable appointment booking system built with **React**, **Java (Spring Boot 3)**, and **PostgreSQL**.
 
-## 🌐 Live Production Deployment
+## 🌐 Live Production & Repository Links
 
+- **GitHub Repository**: [https://github.com/kishorB19/appointment-booking-system](https://github.com/kishorB19/appointment-booking-system)
 - **Vercel Frontend URL**: [https://frontend-ten-murex-2hsttxiju3.vercel.app](https://frontend-ten-murex-2hsttxiju3.vercel.app)
 - **Deployment Status**: ✅ Production Ready
 
