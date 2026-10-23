@@ -35,9 +35,9 @@ const INITIAL_DOCTORS = [
   {
     id: 2,
     profileId: 1,
-    fullName: "Dr. Sarah Jenkins",
-    email: "doctor.sarah@demo.com",
-    phone: "+1 (555) 432-8765",
+    fullName: "Dr. Ananya Iyer",
+    email: "doctor.ananya@demo.com",
+    phone: "+91 97654 32109",
     specialization: "Cardiology",
     experienceYears: 12,
     consultationFee: 75.0,
@@ -46,14 +46,14 @@ const INITIAL_DOCTORS = [
     workingHoursStart: "09:00",
     workingHoursEnd: "17:00",
     rating: 4.9,
-    clinicAddress: "Apex Heart & Vascular Center, Suite 300"
+    clinicAddress: "Shree Heart & Vascular Center, Banjara Hills"
   },
   {
     id: 3,
     profileId: 2,
-    fullName: "Dr. Robert Chen",
-    email: "doctor.robert@demo.com",
-    phone: "+1 (555) 678-1234",
+    fullName: "Dr. Vikram Deshmukh",
+    email: "doctor.vikram@demo.com",
+    phone: "+91 96543 21098",
     specialization: "Dermatology",
     experienceYears: 8,
     consultationFee: 60.0,
@@ -62,14 +62,14 @@ const INITIAL_DOCTORS = [
     workingHoursStart: "10:00",
     workingHoursEnd: "18:00",
     rating: 4.8,
-    clinicAddress: "ClearSkin Dermatology Center, Room 102"
+    clinicAddress: "Radiant Skin Clinic, MG Road, Pune"
   },
   {
     id: 4,
     profileId: 3,
-    fullName: "Dr. Priya Sharma",
-    email: "doctor.priya@demo.com",
-    phone: "+1 (555) 789-4561",
+    fullName: "Dr. Meera Krishnan",
+    email: "doctor.meera@demo.com",
+    phone: "+91 95432 10987",
     specialization: "Pediatrics",
     experienceYears: 10,
     consultationFee: 55.0,
@@ -78,14 +78,14 @@ const INITIAL_DOCTORS = [
     workingHoursStart: "08:30",
     workingHoursEnd: "16:30",
     rating: 4.9,
-    clinicAddress: "Little Wonders Pediatric Clinic, Floor 2"
+    clinicAddress: "Little Stars Children's Clinic, Koramangala"
   },
   {
     id: 5,
     profileId: 4,
-    fullName: "Dr. Marcus Vance",
-    email: "doctor.marcus@demo.com",
-    phone: "+1 (555) 987-6543",
+    fullName: "Dr. Rajesh Nair",
+    email: "doctor.rajesh@demo.com",
+    phone: "+91 94321 09876",
     specialization: "Neurology",
     experienceYears: 15,
     consultationFee: 90.0,
@@ -94,9 +94,11 @@ const INITIAL_DOCTORS = [
     workingHoursStart: "09:00",
     workingHoursEnd: "15:00",
     rating: 4.7,
-    clinicAddress: "Metro Neuro & Brain Institute, Suite 501"
+    clinicAddress: "Neuro Life Institute, Jubilee Hills"
   }
 ];
+
+const STORE_VERSION = 'care_data_v3';
 
 function getLocalStore(key, defaultVal) {
   const data = localStorage.getItem(`care_${key}`);
@@ -105,7 +107,12 @@ function getLocalStore(key, defaultVal) {
     return defaultVal;
   }
   try {
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+    if (key === 'doctors' && (!Array.isArray(parsed) || parsed.length === 0)) {
+      localStorage.setItem(`care_${key}`, JSON.stringify(defaultVal));
+      return defaultVal;
+    }
+    return parsed;
   } catch {
     return defaultVal;
   }
@@ -116,23 +123,23 @@ function setLocalStore(key, val) {
 }
 
 function initMockData() {
-  if (!localStorage.getItem('care_doctors')) {
+  // If version mismatch or missing, refresh mock cache so updated Hindu names load properly
+  if (localStorage.getItem('care_version') !== STORE_VERSION) {
+    localStorage.setItem('care_version', STORE_VERSION);
     setLocalStore('doctors', INITIAL_DOCTORS);
-  }
-  if (!localStorage.getItem('care_appointments')) {
     setLocalStore('appointments', [
       {
         id: 101,
         patientId: 1,
-        patientName: "Alex Taylor",
+        patientName: "Arjun Patel",
         patientEmail: "patient@demo.com",
-        patientPhone: "+1 (555) 234-5678",
+        patientPhone: "+91 98765 43210",
         doctorId: 2,
-        doctorName: "Dr. Sarah Jenkins",
-        doctorEmail: "doctor.sarah@demo.com",
+        doctorName: "Dr. Ananya Iyer",
+        doctorEmail: "doctor.ananya@demo.com",
         doctorSpecialization: "Cardiology",
         consultationFee: 75.0,
-        clinicAddress: "Apex Heart & Vascular Center, Suite 300",
+        clinicAddress: "Shree Heart & Vascular Center, Banjara Hills",
         appointmentDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
         appointmentTime: "10:00 AM",
         status: "CONFIRMED",
@@ -143,15 +150,15 @@ function initMockData() {
       {
         id: 102,
         patientId: 1,
-        patientName: "Alex Taylor",
+        patientName: "Arjun Patel",
         patientEmail: "patient@demo.com",
-        patientPhone: "+1 (555) 234-5678",
+        patientPhone: "+91 98765 43210",
         doctorId: 3,
-        doctorName: "Dr. Robert Chen",
-        doctorEmail: "doctor.robert@demo.com",
+        doctorName: "Dr. Vikram Deshmukh",
+        doctorEmail: "doctor.vikram@demo.com",
         doctorSpecialization: "Dermatology",
         consultationFee: 60.0,
-        clinicAddress: "ClearSkin Dermatology Center, Room 102",
+        clinicAddress: "Radiant Skin Clinic, MG Road, Pune",
         appointmentDate: new Date(Date.now() - 86400000 * 3).toISOString().split('T')[0],
         appointmentTime: "02:30 PM",
         status: "COMPLETED",
@@ -161,8 +168,6 @@ function initMockData() {
         prescriptionId: 501
       }
     ]);
-  }
-  if (!localStorage.getItem('care_prescriptions')) {
     setLocalStore('prescriptions', [
       {
         id: 501,
@@ -170,13 +175,13 @@ function initMockData() {
         appointmentDate: new Date(Date.now() - 86400000 * 3).toISOString().split('T')[0],
         appointmentTime: "02:30 PM",
         doctorId: 3,
-        doctorName: "Dr. Robert Chen",
+        doctorName: "Dr. Vikram Deshmukh",
         doctorSpecialization: "Dermatology",
-        clinicAddress: "ClearSkin Dermatology Center, Room 102",
+        clinicAddress: "Radiant Skin Clinic, MG Road, Pune",
         patientId: 1,
-        patientName: "Alex Taylor",
+        patientName: "Arjun Patel",
         patientEmail: "patient@demo.com",
-        patientPhone: "+1 (555) 234-5678",
+        patientPhone: "+91 98765 43210",
         diagnosis: "Contact Dermatitis with mild allergic irritation",
         medicines: JSON.stringify([
           { name: "Hydrocortisone Cream 1%", dosage: "Thin layer", frequency: "2x daily", duration: "7 days" },
@@ -187,6 +192,12 @@ function initMockData() {
         createdAt: new Date().toISOString()
       }
     ]);
+    return;
+  }
+
+  const existingDocs = getLocalStore('doctors', INITIAL_DOCTORS);
+  if (!Array.isArray(existingDocs) || existingDocs.length === 0) {
+    setLocalStore('doctors', INITIAL_DOCTORS);
   }
 }
 
@@ -208,8 +219,8 @@ function handleMockRequest(endpoint, options = {}) {
         token: 'demo-patient-token-xyz',
         id: 1,
         email: email,
-        fullName: 'Alex Taylor',
-        phone: '+1 (555) 234-5678',
+        fullName: 'Arjun Patel',
+        phone: '+91 98765 43210',
         role: 'PATIENT'
       };
     }
@@ -314,9 +325,9 @@ function handleMockRequest(endpoint, options = {}) {
     const newApt = {
       id: Date.now(),
       patientId: currentUser?.id || 1,
-      patientName: currentUser?.fullName || 'Patient',
+      patientName: currentUser?.fullName || 'Arjun Patel',
       patientEmail: currentUser?.email || 'patient@demo.com',
-      patientPhone: currentUser?.phone || '+1 (555) 234-5678',
+      patientPhone: currentUser?.phone || '+91 98765 43210',
       doctorId: doctor.id,
       doctorName: doctor.fullName,
       doctorEmail: doctor.email,
@@ -433,18 +444,19 @@ async function request(endpoint, options = {}) {
   try {
     const response = await fetch(`${API_BASE}${endpoint}`, config);
 
-    // If Vercel static server returns 405 (Method Not Allowed) or 404
-    if (response.status === 405 || response.status === 404) {
-      return handleMockRequest(endpoint, options);
-    }
-
     if (response.status === 401) {
       setAuthToken(null);
       setCurrentUser(null);
       window.dispatchEvent(new Event('care_auth_change'));
     }
 
+    // If server error, proxy error, 404, or 405 occurs, fall back to mock data
     if (!response.ok) {
+      const mockResult = handleMockRequest(endpoint, options);
+      if (mockResult !== null && mockResult !== undefined) {
+        return mockResult;
+      }
+
       let errorMessage = 'An error occurred';
       try {
         const errData = await response.json();
@@ -457,13 +469,19 @@ async function request(endpoint, options = {}) {
 
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.includes('application/json')) {
-      return await response.json();
+      const data = await response.json();
+      // If doctors endpoint returns an empty array, fall back to default doctors
+      if (endpoint.startsWith('/doctors') && Array.isArray(data) && data.length === 0) {
+        return handleMockRequest(endpoint, options) || INITIAL_DOCTORS;
+      }
+      return data;
     }
     return null;
   } catch (err) {
-    // If network error (e.g. backend not running in cloud) or 405, fall back gracefully
-    if (err.message?.includes('Failed to fetch') || err.message?.includes('405') || err.message?.includes('NetworkError')) {
-      return handleMockRequest(endpoint, options);
+    // If backend isn't reachable or proxy failed, fall back gracefully
+    const mockResult = handleMockRequest(endpoint, options);
+    if (mockResult !== null && mockResult !== undefined) {
+      return mockResult;
     }
     throw err;
   }

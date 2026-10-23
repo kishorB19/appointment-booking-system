@@ -199,7 +199,7 @@ export default function AuthModal({ onLoginSuccess }) {
                 required
                 value={fullName}
                 onChange={e => setFullName(e.target.value)}
-                placeholder={role === 'DOCTOR' ? 'Dr. Sarah Jenkins' : 'Alex Taylor'}
+                placeholder={role === 'DOCTOR' ? 'Dr. Ananya Iyer' : 'Arjun Patel'}
                 style={{ width: '100%' }}
               />
             </div>
@@ -214,7 +214,7 @@ export default function AuthModal({ onLoginSuccess }) {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder="alex@example.com"
+              placeholder="arjun@example.com"
               style={{ width: '100%' }}
             />
           </div>
@@ -424,12 +424,12 @@ export default function AuthModal({ onLoginSuccess }) {
                 }}
               >
                 <User size={14} />
-                <span>Patient (Alex)</span>
+                <span>Patient (Arjun)</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => handleQuickLogin('doctor.sarah@demo.com', 'password123')}
+                onClick={() => handleQuickLogin('doctor.ananya@demo.com', 'password123')}
                 style={{
                   padding: '0.55rem 0.65rem',
                   borderRadius: 'var(--radius-sm)',
@@ -445,12 +445,12 @@ export default function AuthModal({ onLoginSuccess }) {
                 }}
               >
                 <Stethoscope size={14} />
-                <span>Dr. Sarah (Cardio)</span>
+                <span>Dr. Ananya (Cardio)</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => handleQuickLogin('doctor.robert@demo.com', 'password123')}
+                onClick={() => handleQuickLogin('doctor.vikram@demo.com', 'password123')}
                 style={{
                   padding: '0.55rem 0.65rem',
                   borderRadius: 'var(--radius-sm)',
@@ -466,12 +466,12 @@ export default function AuthModal({ onLoginSuccess }) {
                 }}
               >
                 <Stethoscope size={14} />
-                <span>Dr. Robert (Derma)</span>
+                <span>Dr. Vikram (Derma)</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => handleQuickLogin('doctor.priya@demo.com', 'password123')}
+                onClick={() => handleQuickLogin('doctor.meera@demo.com', 'password123')}
                 style={{
                   padding: '0.55rem 0.65rem',
                   borderRadius: 'var(--radius-sm)',
@@ -487,7 +487,7 @@ export default function AuthModal({ onLoginSuccess }) {
                 }}
               >
                 <Stethoscope size={14} />
-                <span>Dr. Priya (Pedia)</span>
+                <span>Dr. Meera (Pedia)</span>
               </button>
             </div>
           </div>

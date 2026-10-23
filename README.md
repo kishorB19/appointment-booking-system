@@ -40,11 +40,11 @@ A clean, modern, and reliable appointment booking system built with **React**, *
 
 | Role | Name | Email | Password | Details |
 |------|------|-------|----------|---------|
-| **Patient** | Alex Taylor | `patient@demo.com` | `password123` | Pre-booked appointments & Rx |
-| **Doctor** | Dr. Sarah Jenkins | `doctor.sarah@demo.com` | `password123` | Cardiology ($75/visit) |
-| **Doctor** | Dr. Robert Chen | `doctor.robert@demo.com` | `password123` | Dermatology ($60/visit) |
-| **Doctor** | Dr. Priya Sharma | `doctor.priya@demo.com` | `password123` | Pediatrics ($55/visit) |
-| **Doctor** | Dr. Marcus Vance | `doctor.marcus@demo.com` | `password123` | Neurology ($90/visit) |
+| **Patient** | Arjun Patel | `patient@demo.com` | `password123` | Pre-booked appointments & Rx |
+| **Doctor** | Dr. Ananya Iyer | `doctor.ananya@demo.com` | `password123` | Cardiology ($75/visit) |
+| **Doctor** | Dr. Vikram Deshmukh | `doctor.vikram@demo.com` | `password123` | Dermatology ($60/visit) |
+| **Doctor** | Dr. Meera Krishnan | `doctor.meera@demo.com` | `password123` | Pediatrics ($55/visit) |
+| **Doctor** | Dr. Rajesh Nair | `doctor.rajesh@demo.com` | `password123` | Neurology ($90/visit) |
 
 *(You can also register brand new Patient or Doctor accounts anytime directly from the Sign Up form).*
 
